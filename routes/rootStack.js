@@ -3,9 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 const Stack = createStackNavigator();
 
-import Post from '../components/Post';
-import Get from '../components/Get';
-import Detail from '../components/Detail'
+import Post from '../src/components/Post';
+import Get from '../src/components/Get';
+import Detail from '../src/components/Detail'
 
 const rootStack = () => {
   return (
