@@ -11,33 +11,44 @@ export const GET_USER_PHOTO = 'GET_USER_PHOTO';
 
 const API_URL = 'https://simple-contact-crud.herokuapp.com/contact';
 
+// export const getContact = () => {
+//     try {
+//         return async (dispatch) => {
+//             const result = await fetch(API_URL, {
+//                 method: 'GET',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//             });
+//             const json = await result.json();
+//             if (json) {
+//                 dispatch({
+//                     type: GET_USER_DATA,
+//                     payload: json
+//                 });
+//             } else {
+//                 console.log('Unable to fetch!');
+//             }
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
 export const getContact = () => {
-    try {
-        return async dispatch => {
-            const result = await fetch(API_URL, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const json = await result.json();
-            if (json) {
-                dispatch({
-                    type: GET_USER_DATA,
-                    payload: json
-                });
-            } else {
-                console.log('Unable to fetch!');
-            }
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
+    return async (dispatch) => {
+      const res = await fetch(API_URL);
+      const respondJson = await res.json();
+      return dispatch({
+        type: GET_USER_DATA,
+        payload: respondJson,
+      });
+    };
+  };
 
 export const getContactById = (id) => {
     try {
-        return async dispatch => {
+        return async (dispatch) => {
             const result = await fetch(API_URL + '/' + id, {
                 method: 'GET',
                 headers: {
@@ -61,7 +72,7 @@ export const getContactById = (id) => {
 
 export const updateContact = (id, firstName, lastName, age, photo) => {
     try {
-        return async dispatch => {
+        return async (dispatch) => {
             const result = await fetch(API_URL + '/' + id, {
                 method: 'PUT',
                 headers: {
@@ -91,7 +102,7 @@ export const updateContact = (id, firstName, lastName, age, photo) => {
 
 export const createContact = (firstName, lastName, age, photo) => {
     try {
-        return async dispatch => {
+        return async (dispatch) => {
             const result = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
@@ -121,7 +132,7 @@ export const createContact = (firstName, lastName, age, photo) => {
 
 export const deleteContact = (id) => {
     try {
-        return async dispatch => {
+        return async (dispatch) => {
             const result = await fetch(API_URL + '/' + id, {
                 method: 'DELETE',
                 headers: {

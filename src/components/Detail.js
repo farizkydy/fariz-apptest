@@ -45,7 +45,7 @@ const Detail = ({ route, navigation }) => {
 
     myHeaders.append('Content-Type', 'application/json');
 
-    fetch('https://simple-contact-crud.herokuapp.com/contact'+item.id, {
+    fetch('https://simple-contact-crud.herokuapp.com/contact/'+item.id, {
       method: 'PUT',
       headers: myHeaders,
       body: JSON.stringify({
@@ -72,8 +72,8 @@ const Detail = ({ route, navigation }) => {
     );
 
     myHeaders.append('Content-Type', 'application/json');
-
-    fetch('https://simple-contact-crud.herokuapp.com/contact'+item.id, {
+    console.log('berapa', item.id);
+    fetch('https://simple-contact-crud.herokuapp.com/contact/'+item.id, {
       method: 'DELETE',
       headers: myHeaders,
       body: JSON.stringify({

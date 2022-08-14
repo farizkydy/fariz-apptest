@@ -13,28 +13,15 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // create a component
 const Get = ({ navigation }) => {
-    // const { name, age, firstName } = useSelector(state => state.userReducer);
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     // getData();
-    //     dispatch(getContact());
-    // }, []);
-  const [user, setUser] = useState();
-  const getUserData = async () => {
-    try {
-      let response = await fetch('https://simple-contact-crud.herokuapp.com/contact');
-      let json = await response.json();
-      setUser(json.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
-  useState(() => {
-    getUserData();
-  }, []);
+    const dispatch = useDispatch();
+    const { data } = useSelector((state) => state);
+    useEffect(() => {
+      dispatch(getContact());
+    }, []);
 
   const renderItem = ({ item }) => {
+    console.log('apa', item);
     return (
       <TouchableOpacity onPress={()=>navigation.navigate('Detail', {
         item: item
@@ -59,10 +46,11 @@ const Get = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={user}
+        data={data.data}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
+      <Text>Tes</Text>
     </View>
   );
 };

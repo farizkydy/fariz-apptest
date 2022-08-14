@@ -12,7 +12,7 @@ export default function Post() {
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
-    age: '',
+    age: 0,
     photo: '',
   });
 

@@ -1,6 +1,10 @@
 import { GET_FIRST_NAME, GET_LAST_NAME, GET_USER_AGE, GET_USER_PHOTO, GET_USER_DATA } from '../redux/action';
 
 const initialState = {
+    // firstName: '',
+    // lastName: '',
+    // age: 0,
+    // photo: '',
     data: []
 }
 
