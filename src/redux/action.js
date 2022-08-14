@@ -1,3 +1,5 @@
+import { exp } from "react-native-reanimated";
+
 export const SET_FIRST_NAME = 'SET_FIRST_NAME';
 export const SET_USER_AGE = 'SET_USER_AGE';
 export const INCREASE_AGE = 'INCREASE_AGE';
@@ -33,12 +35,127 @@ export const getContact = () => {
     }
 }
 
-export const setFirstName = name => dispatch => {
+export const getContactById = (id) => {
+    try {
+        return async dispatch => {
+            const result = await fetch(API_URL + '/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const json = await result.json();
+            if (json) {
+                dispatch({
+                    type: GET_USER_DATA,
+                    payload: json
+                });
+            } else {
+                console.log('Unable to fetch!');
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const updateContact = (id, firstName, lastName, age, photo) => {
+    try {
+        return async dispatch => {
+            const result = await fetch(API_URL + '/' + id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    age,
+                    photo
+                })
+            });
+            const json = await result.json();
+            if (json) {
+                dispatch({
+                    type: GET_USER_DATA,
+                    payload: json
+                });
+            } else {
+                console.log('Unable to fetch!');
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const createContact = (firstName, lastName, age, photo) => {
+    try {
+        return async dispatch => {
+            const result = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    age,
+                    photo
+                })
+            });
+            const json = await result.json();
+            if (json) {
+                dispatch({
+                    type: GET_USER_DATA,
+                    payload: json
+                });
+            } else {
+                console.log('Unable to fetch!');
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const deleteContact = (id) => {
+    try {
+        return async dispatch => {
+            const result = await fetch(API_URL + '/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const json = await result.json();
+            if (json) {
+                dispatch({
+                    type: GET_USER_DATA,
+                    payload: json
+                });
+            } else {
+                console.log('Unable to fetch!');
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const setFirstName = firstName => dispatch => {
     dispatch({
         type: SET_FIRST_NAME,
-        payload: name,
+        payload: firstName,
     });
 };
+
+export const setLastName = lastName => dispatch => {
+    dispatch({
+        type: SET_LAST_NAME,
+        payload: lastName,
+    });
+}
 
 export const setAge = age => dispatch => {
     dispatch({
@@ -47,9 +164,9 @@ export const setAge = age => dispatch => {
     });
 };
 
-export const increaseAge = age => dispatch => {
+export const setPhoto = photo => dispatch => {
     dispatch({
-        type: INCREASE_AGE,
-        payload: age,
+        type: SET_USER_PHOTO,
+        payload: photo,
     });
-};
+}
