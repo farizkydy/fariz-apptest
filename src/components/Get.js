@@ -8,18 +8,18 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import { setName, setAge, increaseAge, getContact } from '../redux/action';
+import {  getContact } from '../redux/action';
 import { useSelector, useDispatch } from 'react-redux';
 
 // create a component
 const Get = ({ navigation }) => {
-  //   const { name, age, firstName } = useSelector(state => state.userReducer);
-  //   const dispatch = useDispatch();
-  //   useEffect(() => {
+    // const { name, age, firstName } = useSelector(state => state.userReducer);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
     //     // getData();
     //     dispatch(getContact());
     // }, []);
-    const [user, setUser] = useState();
+  const [user, setUser] = useState();
   const getUserData = async () => {
     try {
       let response = await fetch('https://simple-contact-crud.herokuapp.com/contact');

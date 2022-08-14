@@ -21,7 +21,7 @@ export const getContact = () => {
             const json = await result.json();
             if (json) {
                 dispatch({
-                    type: GET_FIRST_NAME,
+                    type: GET_USER_DATA,
                     payload: json
                 });
             } else {
